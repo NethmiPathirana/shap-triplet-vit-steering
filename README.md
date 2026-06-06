@@ -60,13 +60,6 @@ The original metadata variables considered were:
 | RMSE | 0.1504 | **0.1921** |
 | R² | 0.8748 | **0.6573** |
 
-
-### Actual versus Predicted Steering Angle
-
-The predicted steering angles show a positive correspondence with the ground-truth steering angles. The residual distribution is centered near zero, indicating stable prediction behavior without a strong systematic overestimation or underestimation trend.
-
-![Actual vs predicted steering angle and residual distribution](assets/actual_predicted_residual.png)
-
 ### Ablation Study
 
 | Model configuration | MAE | RMSE | R² |
