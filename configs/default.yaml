@@ -1,0 +1,49 @@
+data_dir: /path/to/Dataset-self-driving
+cleaned_csv: /path/to/Dataset-self-driving/cleaned_driving_log.csv
+checkpoints_dir: outputs/checkpoints
+
+seed: 220
+epochs: 150
+batch_size: 16
+lr: 0.0002
+weight_decay: 0.0001
+patience: 15
+grad_clip: 1.0
+num_workers: 2
+use_amp: true
+val_size: 0.20
+
+backbone_name: vit_small_patch16_224
+img_size: 224
+fusion_dim: 384
+fusion_dropout: 0.1
+
+sample_limit:
+verify_images_again: false
+
+numeric_meta_cols:
+  - throttle
+  - reverse
+  - speed
+categorical_meta_cols: []
+
+use_weighted_sampler: true
+steering_bin_edges:
+  - -1.0
+  - -0.35
+  - -0.15
+  - -0.05
+  - 0.05
+  - 0.15
+  - 0.35
+  - 1.0
+
+model_name: triplet_vit_selected_meta_concat_center_steering
+shap_background_size: 256
+shap_eval_size: 256
+shap_top_k: 2
+metadata_only_hidden_dims:
+  - 64
+  - 32
+metadata_only_epochs: 100
+metadata_only_lr: 0.001

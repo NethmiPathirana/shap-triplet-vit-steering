@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "triplet-multimodal-steering"
+version = "1.0.0"
+description = "Triplet multimodal ViT model for steering-angle regression with metadata SHAP feature selection."
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "Research Author" }]
+license = { text = "Research-use" }
+
+[tool.setuptools.packages.find]
+where = ["src"]

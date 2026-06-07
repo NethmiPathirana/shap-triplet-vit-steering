@@ -1,12 +1,6 @@
 # SHAP-Weighted Triplet Multimodal ViT for Steering Angle Prediction
 
-> **Status:** Paper under review · Full code release after paper acceptance
-
 This repository presents a project page for a **SHAP-weighted triplet multimodal Vision Transformer (ViT)** framework for continuous steering angle prediction. The framework integrates synchronized **left, center, and right camera views** with selected vehicle-state metadata, where metadata features are selected and weighted using **SHapley Additive exPlanations (SHAP)** before multimodal fusion.
-
-## Code Availability Notice
-
-The complete source code, training scripts, evaluation notebooks, configuration files, and trained model checkpoints will be released after acceptance of the associated manuscript. The manuscript is currently under review; therefore, this repository presently provides the methodological summary, representative results, and project documentation.
 
 ## Overview
 
@@ -33,6 +27,97 @@ The model processes synchronized triplet camera views using a shared ViT backbon
 2. **SHAP-guided metadata fusion:** A metadata selection and weighting strategy that retains informative features and reduces the influence of weak or irrelevant metadata.
 3. **Explainable prediction analysis:** Global metadata importance, aggregated modality contribution, and local attribution heatmaps are used to interpret model behavior.
 4. **Ablation-based validation:** The proposed SHAP-weighted fusion strategy is compared against metadata-only, triplet-camera-only, and normal metadata-fusion variants.
+
+## Project structure
+
+```text
+triplet_multimodal_steering_project/
+├── configs/
+│   └── default.yaml
+├── scripts/
+│   ├── train.py
+│   ├── evaluate.py
+│   ├── resume_training.py
+│   └── explain.py
+├── src/
+│   └── triplet_steering/
+│       ├── config.py
+│       ├── pipeline.py
+│       ├── utils.py
+│       ├── visualization.py
+│       ├── data/
+│       ├── models/
+│       ├── training/
+│       └── xai/
+├── requirements.txt
+└── pyproject.toml
+```
+
+## Installation
+
+Create an environment and install dependencies.
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+pip install -e .
+```
+
+For Windows PowerShell:
+
+```powershell
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+pip install -e .
+```
+
+## Configuration
+
+Edit `configs/default.yaml` before running the scripts.
+
+```yaml
+data_dir: /path/to/Dataset-self-driving
+cleaned_csv: /path/to/Dataset-self-driving/cleaned_driving_log.csv
+checkpoints_dir: outputs/checkpoints
+```
+
+## Train
+
+```bash
+python scripts/train.py --config configs/default.yaml
+```
+
+The training script saves checkpoints, metadata-selection artifacts, metrics, prediction CSV files, and paper-ready figures under the configured checkpoint directory.
+
+## Evaluate
+
+```bash
+python scripts/evaluate.py --config configs/default.yaml --checkpoint outputs/checkpoints/triplet_vit_selected_meta_concat_center_steering_best.pth
+```
+
+## Resume training
+
+```bash
+python scripts/resume_training.py --config configs/default.yaml --checkpoint outputs/checkpoints/triplet_vit_selected_meta_concat_center_steering_best.pth --extra-epochs 50 --patience 10
+```
+
+## Explainability
+
+```bash
+python scripts/explain.py --config configs/default.yaml --checkpoint outputs/checkpoints/triplet_vit_selected_meta_concat_center_steering_best.pth --sample-indices 0 5 10
+```
+
+For random samples:
+
+```bash
+python scripts/explain.py --config configs/default.yaml --checkpoint outputs/checkpoints/triplet_vit_selected_meta_concat_center_steering_best.pth --random-samples --num-samples 10
+```
+
+## Reproducibility notes
+
+Set `seed` in the YAML configuration to reproduce data splits, metadata selection, and training initialization as closely as possible. Exact reproducibility can still vary depending on GPU, CUDA, PyTorch, and hardware-specific kernels.
 
 ## Dataset and Input Representation
 
