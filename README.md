@@ -174,8 +174,20 @@ The local attribution heatmaps highlight image regions that influence an individ
 
 ## Citation
 
-A formal citation will be added after publication.
+```bibtex
+@article{pathirana2026tripletmultimodalvit,
+  title   = {A Triplet Multimodal Vision Transformer Framework for Steering Angle Prediction with Metadata-Aware Feature Fusion and Explainability},
+  author  = {Pathirana, Nethmi and Munasinghe, Isuru and Dombawala, Charitha and Sanjeewani, Pubudu and Pemasiri, Akila and Perera, Asanka},
+  journal = {Journal name to be added after acceptance},
+  year    = {2026},
+  note    = {To be updated after acceptance}
+}
+```
+
+The final journal name, volume, issue, page numbers, and DOI will be updated after the article is accepted and published.
 
 ## License
 
-The license will be finalized when the complete codebase is released after paper acceptance. Until then, the repository contents are provided for academic preview and documentation purposes only.
+The source code in this repository is made publicly available under the MIT License to support reproducibility, academic research, and further development with proper attribution to the original authors.
+
+
